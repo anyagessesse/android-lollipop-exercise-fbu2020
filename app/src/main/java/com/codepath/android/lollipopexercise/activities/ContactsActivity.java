@@ -52,11 +52,6 @@ public class ContactsActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_contacts, menu);
-
-
-        
-
-
         return true;
     }
 
@@ -66,6 +61,13 @@ public class ContactsActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        if(id == R.id.miAddContact){
+            Contact contact = Contact.getRandomContact(this);
+            contacts.add(0,contact);
+            mAdapter.notifyItemInserted(0);
+            rvContacts.smoothScrollToPosition(0);
+
+        }
 
         return super.onOptionsItemSelected(item);
     }
